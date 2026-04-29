@@ -2,7 +2,7 @@ version: '3.9'
 services:
 
   mongodb:
-    image: mongo:latest
+    image: docker.io/raeffray/mongodb:latest
     container_name: mediahub-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: adminuser
@@ -16,9 +16,8 @@ services:
       - ./mongo-config:/data/install
     command: --auth
     networks:
-      - db-network
+      - mediahub-network
 
 networks:
-  services-network:
-    name: mediastore-network
-    driver: overlay
+  mediahub-network:
+    external: true
